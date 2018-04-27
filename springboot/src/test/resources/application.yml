@@ -1,0 +1,34 @@
+calm: test
+
+# 排除热加载
+spring: 
+  devtools.restart.exclude: static/**,public/**
+  datasource: 
+    url: jdbc:mysql://localhost:3306/news
+    username: root
+    password: xxx
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa.properties.hibernate.hbm2ddl.auto: update
+  other-datasource: 
+    url: jdbc:mysql://localhost:3306/xxx
+    username: root
+    password: xxx
+    driver-class-name: com.mysql.jdbc.Driver
+  data: 
+    mongodb:
+      uri: mongodb://localhost:27017/test    
+  mail: 
+    host: smtp.qq.com
+    username: 903947422@qq.com
+    password: xxx
+    properties.mail.smtp: 
+      auth: true
+      starttls: 
+        enable: true
+        required: true
+  
+mybatis:   
+  mapperLocations: classpath:mapper/*.xml  
+  typeAliasesPackage: com.calm.spring.entity
+management.security.enabled: false
+  

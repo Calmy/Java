@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+calm: 666
+
+# 排除热加载
+spring: 
+  devtools.restart.exclude: static/**,public/**
+  jpa.properties.hibernate.hbm2ddl.auto: update
+  datasource: 
+    url: jdbc:mysql://localhost:3306/news
+    username: root
+    password: calm
+    driver-class-name: com.mysql.jdbc.Driver
+  other-datasource: 
+    url: jdbc:mysql://localhost:3306/xxx
+    username: root
+    password: calm
+    driver-class-name: com.mysql.jdbc.Driver
+
+# Redis数据库索引（默认为0）
+  redis: 
+    database: 0
+    host: localhost
+    port: 6379
+    password: 
+    pool:
+      max-active: 8
+      max-wait: -1
+# 连接池中的最大空闲连接
+      max-idle: 8
+      min-idle: 0
+# 连接超时时间（毫秒）
+    timeout: 0

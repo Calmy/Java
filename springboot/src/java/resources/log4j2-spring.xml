@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<Configuration>  
+	<properties>
+        <!-- 文件输出格式 -->
+        <property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} |-%-5level [%thread] %c [%L] -| %msg%n</property>
+    </properties>
+   
+  <Appenders>  
+    <!-- 配置日志输出文件名字     追加读写 -->    
+    <RollingFile name="log" fileName="logs/log.log" filePattern="logs/log-%d{yyyy-MM-dd}.log" append="true">  
+        <!-- 设置策略 -->  
+        <Policies>    
+            <!-- 基于时间的触发策略。该策略主要是完成周期性的log文件封存工作。有两个参数：  
+                interval，integer型，指定两次封存动作之间的时间间隔。单位:以日志的命名精度来确定单位，  
+                    比如yyyy-MM-dd-HH 单位为小时，yyyy-MM-dd-HH-mm 单位为分钟  
+                modulate，boolean型，说明是否对封存时间进行调制。若modulate=true，  
+                    则封存时间将以0点为边界进行偏移计算。比如，modulate=true，interval=4hours，  
+                    那么假设上次封存日志的时间为03:00，则下次封存日志的时间为04:00，  
+                    之后的封存时间依次为08:00，12:00，16:00  
+             -->  
+            <TimeBasedTriggeringPolicy interval="1" modulate="true" />    
+        </Policies>  
+    </RollingFile>  
+    <!-- 标准输出 -->  
+    <Console name="STDOUT" target="SYSTEM_OUT">  
+      <!-- 输出格式 -->  
+      <PatternLayout pattern="${PATTERN}" />
+    </Console>
+  </Appenders>  
+  <Loggers>  
+    <!-- 配置记录器级别 -->  
+    <Root level="INFO">  
+        <AppenderRef ref="log"/>  
+        <!-- 输出设置 -->  
+        <AppenderRef ref="STDOUT"/>  
+    </Root>  
+  </Loggers>  
+</Configuration> 

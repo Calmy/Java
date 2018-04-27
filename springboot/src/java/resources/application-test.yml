@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+calm: 666
+
+# 排除热加载
+spring: 
+  devtools.restart.exclude: static/**,public/**
+  datasource: 
+    url: jdbc:mysql://localhost:3306/news
+    username: root
+    password: xxx
+    driver-class-name: com.mysql.jdbc.Driver
