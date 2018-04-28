@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
  *    修改后版本:     修改人：  修改日期:     修改内容:
  *          </pre>
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class MyException {
 	public static final String DEFAULT_ERROR_VIEW = "error";
 

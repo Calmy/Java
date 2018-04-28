@@ -3,6 +3,9 @@
  */
 package com.calm.spring.service;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.calm.spring.entity.News;
@@ -21,7 +24,7 @@ import com.calm.spring.entity.News;
  *    修改后版本:     修改人：  修改日期:     修改内容:
  *          </pre>
  */
-public interface NewsJpaService extends JpaRepository<News, Long> {
 
+public interface NewsJpaService extends JpaRepository<News, Long> {
 	News findByTitle(String title);
 }

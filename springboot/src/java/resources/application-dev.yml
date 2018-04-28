@@ -6,20 +6,38 @@ calm: 666
 # 排除热加载
 spring: 
   devtools.restart.exclude: static/**,public/**
-  jpa.properties.hibernate.hbm2ddl.auto: update
+  jpa.properties.hibernate: 
+    dialect: org.hibernate.dialect.MySQLDialect
+    hbm2ddl.auto: update
+    show_sql: true
   datasource: 
-    url: jdbc:mysql://localhost:3306/news
+    url: jdbc:mysql://localhost:3306/news?allowMultiQueries=true&autoReconnect=true
+    maxActive: 20
+    initialSize: 1
+    validationQuery: select 1 from dual
+    maxWait: 60000
     username: root
-    password: calm
+    password: xxx
     driver-class-name: com.mysql.jdbc.Driver
-  other-datasource: 
-    url: jdbc:mysql://localhost:3306/xxx
-    username: root
-    password: calm
-    driver-class-name: com.mysql.jdbc.Driver
-
+#  other-datasource: 
+#    url: jdbc:mysql://localhost:3306/xxx
+#    username: root
+#    password: xxx
+#    driver-class-name: com.mysql.jdbc.Driver
+#  mvc:
+#     view:
+#       prefix: /WEB-INF/templates/view
+#       suffix: .html
+  thymeleaf:  
+     prefix: classpath:/templates/view/ 
+     suffix: .html  
+     encoding: UTF-8  
+     content-type: text/html  
+     mode: HTML5
+#  cache: 
+#    type: ehcache
 # Redis数据库索引（默认为0）
-  redis: 
+  redis:  
     database: 0
     host: localhost
     port: 6379
@@ -32,3 +50,12 @@ spring:
       min-idle: 0
 # 连接超时时间（毫秒）
     timeout: 0
+#  rabbitmq: 
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: xxx
+mybatis:   
+  mapperLocations: classpath:mapper/*.xml  
+  typeAliasesPackage: com.calm.spring.entity
+management.security.enabled: false

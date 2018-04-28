@@ -1,0 +1,8 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd">
+
+	<cache name="user" maxEntriesLocalHeap="200" timeToLiveSeconds="600" />
+	
+	<!-- 声明cacheManager -->
+	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"/>
+</ehcache>

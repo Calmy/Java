@@ -41,5 +41,15 @@
 	定时任务
 
 	异步回调
+	
+	AOP
+	邮件模板
 
+20180428
+	
+	spring-security	https://docs.spring.io/spring-security/site/docs/4.1.0.RELEASE/reference/htmlsingle/#introduction
+	
+	ehcache
+	
+	RabbitMQ
 ​

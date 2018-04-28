@@ -4,6 +4,7 @@
 package com.calm.spring;
 
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
@@ -22,12 +23,13 @@ import org.springframework.transaction.annotation.Transactional;
  *          <pre>
  * 修改记录
  *    修改后版本:     修改人：  修改日期:     修改内容:
- * </pre>
+ *          </pre>
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 @Rollback(true)
-public class CalmBaseTransactionContextTest extends AbstractTransactionalJUnit4SpringContextTests{
+public class CalmBaseTransactionContextTest extends AbstractTransactionalJUnit4SpringContextTests {
 
+	protected final Logger logger = org.slf4j.LoggerFactory.getLogger(getClass());
 }

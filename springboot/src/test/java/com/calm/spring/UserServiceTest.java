@@ -3,18 +3,13 @@
  */
 package com.calm.spring;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.CacheManager;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.calm.spring.entity.User;
 import com.calm.spring.service.UserRepository;
@@ -34,9 +29,12 @@ import com.calm.spring.service.mapper.UserMapper;
  *    修改后版本:     修改人：  修改日期:     修改内容:
  *          </pre>
  */
-@Sql(scripts = "classpath:sql/user.sql")
+//@Sql(scripts = "classpath:sql/user.sql")
 public class UserServiceTest extends CalmBaseTransactionContextTest {
 
+	@Autowired
+	private CacheManager cacheManager;
+	
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -58,8 +56,14 @@ public class UserServiceTest extends CalmBaseTransactionContextTest {
 		 * 
 		 * userMapper.delete((long) 231);
 		 */
-
 		List<User> users = userMapper.getAllUsers();
 		Assert.assertNotNull(users);
+	}
+	
+	@Test
+	public void testCache() {
+		cacheManager.getCache("user");
+		userMapper.findUserByName("test");
+		userMapper.findUserByName("test");
 	}
 }

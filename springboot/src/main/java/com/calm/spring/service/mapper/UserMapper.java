@@ -12,6 +12,8 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 
 import com.calm.spring.entity.User;
 
@@ -30,6 +32,7 @@ import com.calm.spring.entity.User;
  *          </pre>
  */
 @Mapper
+@CacheConfig(cacheNames = "user")
 public interface UserMapper {
 
 	Integer getUserCount();
@@ -40,7 +43,13 @@ public interface UserMapper {
 	@Delete("DELETE FROM sys_user WHERE id =#{id}")
 	boolean delete(Long id);
 
+	
 	@Results({ @Result(property = "id", column = "id"), @Result(property = "name", column = "userName") })
 	@Select("select id,name from sys_user")
 	List<User> getAllUsers();
+	
+	@Cacheable
+	@Results({ @Result(property = "id", column = "id"), @Result(property = "name", column = "userName") })
+	@Select("select id,name from sys_user u where u.name like #{name} limit 1")
+	User findUserByName(String name);
 }
