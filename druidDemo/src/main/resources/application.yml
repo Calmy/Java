@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring: 
+  datasource: 
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/news?allowMultiQueries=true&autoReconnect=true
+    maxActive: 20
+    initialSize: 1
+    validationQuery: select 1 from dual
+    maxWait: 60000
+    username: root
+    password: xxx
+    driver-class-name: com.mysql.jdbc.Driver
