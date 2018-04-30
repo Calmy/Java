@@ -11,6 +11,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -67,5 +68,16 @@ public class WebLogAspect {
 	public void doAfterReturning(Object ret) throws Throwable {
 		// 处理完请求，返回内容
 		logger.info("RESPONSE : " + ret);
+	}
+
+	/**
+	 * 异常发生时可以记录到数据库或搜索引擎
+	  * @author chenzhuo
+	  * @param joinPoint，e
+	  * void
+	 */
+	@AfterThrowing(pointcut = "webLog()", throwing = "e")
+	public void afterThrowing(JoinPoint joinPoint, Throwable e) {
+		// TODO
 	}
 }
